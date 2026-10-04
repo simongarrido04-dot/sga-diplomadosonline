@@ -37,10 +37,6 @@ class Alumno(Persona):
         return list(self._notas)  # copia, para proteger la lista interna
 
     def agregar_nota(self, nota):
-        if len(self._notas) >= self.MAX_NOTAS:
-            raise ValueError("El alumno ya tiene 3 notas")
-        if not 0 <= nota <= 20:
-            raise ValueError("La nota debe estar entre 0 y 20")
         self._notas.append(nota)
 
     def quitar_ultima_nota(self):
@@ -52,7 +48,7 @@ class Alumno(Persona):
         return sum(self._notas) / len(self._notas) if self._notas else 0.0
 
     def tiene_notas_completas(self):
-        return len(self._notas) == self.MAX_NOTAS
+        return len(self._notas) >= self.MAX_NOTAS
 
     def esta_aprobado(self):
         # Polimorfismo: cada programa aplica su propia regla
@@ -61,10 +57,10 @@ class Alumno(Persona):
 
     # --- Persistencia: formato Cedula,Nombre,Correo,Tipo,N1,N2,N3 ---
     def a_linea(self):
-        notas = self._notas + [0] * (self.MAX_NOTAS - len(self._notas))
+        guardadas = self._notas[:self.MAX_NOTAS]
+        notas = guardadas + [0] * (self.MAX_NOTAS - len(guardadas))
         notas_txt = ",".join(f"{n:g}" for n in notas)
         return f"{self._cedula},{self._nombre},{self._correo},{self._programa.nombre},{notas_txt}"
-
     @staticmethod
     def desde_linea(linea):
         c, nom, cor, tipo, n1, n2, n3 = linea.strip().split(",")
