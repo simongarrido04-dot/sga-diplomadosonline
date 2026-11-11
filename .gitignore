@@ -3,3 +3,5 @@ __pycache__/
 python/alumnos.txt
 python/profesores.txt
 python/certificados_pendientes.txt
+*.class
+java/out/
