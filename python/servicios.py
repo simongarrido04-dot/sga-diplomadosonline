@@ -13,15 +13,15 @@ class HistorialNotas:
         alumno = self._repo.buscar_alumno(cedula)
         if alumno is None:
             raise ValueError("No existe un alumno con esa cédula")
-        alumno.agregar_nota(nota)               # valida rango y máximo de 3
-        self._repo.guardar_cambios_alumnos()    # se escribe de inmediato
-        self._pila.append(cedula)               # push
+        alumno.agregar_nota(nota)               
+        self._repo.guardar_cambios_alumnos()    
+        self._pila.append(cedula)               
 
     def deshacer(self):
         """Quita la última nota ingresada (LIFO). Devuelve (cedula, nota) o None."""
         if not self._pila:
             return None
-        cedula = self._pila.pop()               # pop: la última en entrar
+        cedula = self._pila.pop()              
         alumno = self._repo.buscar_alumno(cedula)
         nota = alumno.quitar_ultima_nota()
         self._repo.guardar_cambios_alumnos()
@@ -33,7 +33,7 @@ def generar_certificados(repo):
     cola = deque()
     for alumno in repo.todos_los_alumnos():
         if alumno.esta_aprobado():
-            cola.append(alumno)                 # enqueue
+            cola.append(alumno)               
 
     total = len(cola)
     with open(ARCHIVO_CERTIFICADOS, "w", encoding="utf-8") as f:
@@ -44,7 +44,7 @@ def generar_certificados(repo):
 
         posicion = 1
         while cola:
-            a = cola.popleft()                  # dequeue: el primero en entrar
+            a = cola.popleft()                  
             regla = a.programa.descripcion_regla()
             f.write(f"{posicion}. [{a.cedula}] {a.nombre}\n")
             f.write(f"   - Programa: {a.programa.nombre}\n")

@@ -42,7 +42,7 @@ class Bootcamp(ProgramaAcademico):
         return " (Cumple regla de ninguna nota < 14)"
 
 
-# Fábrica: convierte el texto del archivo en un objeto, sin cadenas de if/elif
+
 _TIPOS = {"curso": Curso, "diplomado": Diplomado, "bootcamp": Bootcamp}
 
 

@@ -1,7 +1,6 @@
 import os
 from personas import Alumno, Profesor
 
-# Los archivos se guardan junto al código, sin importar desde dónde se ejecute
 CARPETA = os.path.dirname(os.path.abspath(__file__))
 ARCHIVO_ALUMNOS = os.path.join(CARPETA, "alumnos.txt")
 ARCHIVO_PROFESORES = os.path.join(CARPETA, "profesores.txt")
