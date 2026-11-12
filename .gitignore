@@ -5,3 +5,6 @@ python/profesores.txt
 python/certificados_pendientes.txt
 *.class
 java/out/
+alumnos.txt
+profesores.txt
+certificados_pendientes.txt
